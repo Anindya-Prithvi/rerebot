@@ -28,6 +28,9 @@ async def on_message(message):
     elif re.match("echo .+",message.content):
         await message.channel.send(message.content[5:])
     elif re.match("addfile -name .+ -content .+", message.content):
+        if (os.listdir("userdir/")>50):
+            await message.channel.send("This utility is blocked due to large amount of files")
+            return
         breakit = message.content.split(" -")
         if len(breakit[1])>50:
             await message.channel.send("Filename is big, please reconsider.")
@@ -58,7 +61,7 @@ async def on_message(message):
         try:
             f = open(f"userdir/{message.content[15:]}","r")
             buffer = f.read(500)
-            await message.channel.send("```\n"+buffer+"```")
+            await message.channel.send("```\n"+buffer+"\n...and so on```")
         except OSError:
             await message.channel.send("No such file found.")
             
