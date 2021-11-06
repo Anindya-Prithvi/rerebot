@@ -16,6 +16,15 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
+    elif message.content == "!!help":
+        await message.channel.send("""Here is the list of my commands: 
+```md
+1. echo <your message here> : This command echoes your message
+2. addfile -name <enter-filename> -content <enter-content>: Writes the file on host machine
+3. showfiles: Lists all files on the host machine
+4. showfile -name <filename>: Shows the content of that file
+...more coming soon!
+```""")
     elif re.match("echo .+",message.content):
         await message.channel.send(message.content[5:])
     elif re.match("addfile -name .+ -content .+", message.content):
