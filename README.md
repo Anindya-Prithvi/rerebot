@@ -1,7 +1,7 @@
 # Rerebot
 
 ## What is it?
-Rerebot is currently a file-i/o bot for discord made in discord.py. The idea sprouted out from no where and hence the project may contain a few cool features which maybe totally unrelated from the others. You may invite the ocassionally active bot using this [link](https://discord.com/api/oauth2/authorize?client_id=906607423916245063&permissions=429497003072&scope=bot)
+Rerebot is currently a file-i/o bot for discord made in discord.py. Current motive is inter-server communication using file-writes... Yes, that's outrageous lol. The idea sprouted out from no where and hence the project may contain a few cool features which maybe totally unrelated from the others. You may invite the ocassionally active bot using this [link](https://discord.com/api/oauth2/authorize?client_id=906607423916245063&permissions=429497003072&scope=bot)
 
 ## How to run (With conda):
 1. Clone this repository
