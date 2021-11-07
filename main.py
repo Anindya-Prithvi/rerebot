@@ -23,8 +23,13 @@ async def on_message(message):
 2. addfile -name <enter-filename> -content <enter-content>: Writes the file on host machine
 3. showfiles: Lists all files on the host machine
 4. showfile -name <filename>: Shows the content of that file
+5. echo emoji <number>: sends the emoji with the corresponding number
 ...more coming soon!
 ```""")
+    elif re.match("echo emoji [0-9]+",message.content):
+        #possibly read from file
+        getemoji = "<:panda_heart:"+message.content.split()[2]+">"
+        await message.channel.send(getemoji)    
     elif re.match("echo .+",message.content):
         await message.channel.send(message.content[5:])
     elif re.match("addfile -name .+ -content .+", message.content):
