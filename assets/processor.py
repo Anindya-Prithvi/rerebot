@@ -1,5 +1,6 @@
 import re
 import requests
+import os
 
 async def process(message):
     if message.content == "":
