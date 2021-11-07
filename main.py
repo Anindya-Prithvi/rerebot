@@ -16,6 +16,13 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
+    elif message.content == "killbot!":
+        print("Kill command")
+        if str(message.author) == "Yourname#1111":
+            #maybe add a prompt to get username of botrunner
+            await message.channel.send("I am being destroyed by "+str(message.author)+". Adios...")
+            print("killing")
+            exit(0)
     elif message.content == "!!help":
         await message.channel.send("""Here is the list of my commands: 
 ```md
@@ -33,7 +40,7 @@ async def on_message(message):
     elif re.match("echo .+",message.content):
         await message.channel.send(message.content[5:])
     elif re.match("addfile -name .+ -content .+", message.content):
-        if (os.listdir("userdir/")>50):
+        if (len(os.listdir("userdir"))>50):
             await message.channel.send("This utility is blocked due to large amount of files")
             return
         breakit = message.content.split(" -")
@@ -66,7 +73,8 @@ async def on_message(message):
         try:
             f = open(f"userdir/{message.content[15:]}","r")
             buffer = f.read(500)
-            await message.channel.send("```\n"+buffer+"\n...and so on```")
+            if len(buffer)==500: buffer = buffer + "\n...and so on"
+            await message.channel.send("```\n"+buffer+"```")
         except OSError:
             await message.channel.send("No such file found.")
             
