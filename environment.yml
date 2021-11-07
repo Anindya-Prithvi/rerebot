@@ -6,4 +6,5 @@ dependencies:
   - python=3.10.*
   - discord.py
   - python-dotenv
+  - requests
 
