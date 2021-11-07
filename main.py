@@ -16,6 +16,13 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
+    elif message.content == "killbot!":
+        print("Kill command")
+        if str(message.author) == "YourName#9999":
+            #maybe add a prompt to get username of botrunner
+            await message.channel.send("I am being destroyed by "+str(message.author)+". Adios...")
+            print("killing")
+            exit(0)
     elif message.content == "!!help":
         await message.channel.send("""Here is the list of my commands: 
 ```md
