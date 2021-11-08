@@ -62,7 +62,7 @@ async def process(message):
         except OSError:
             await message.channel.send("No such file found.")
     elif re.match("bored [A-Za-z]+", message.content):
-        message.channel.send("API Call taking too long [Functionality terminated]")
+        await message.channel.send("API Call taking too long [Functionality terminated]")
         return
         r = requests.get("https://www.boredapi.com/api/activity", {"type":message.content[6:]})
         if r.json().get("error"):
