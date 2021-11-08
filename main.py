@@ -13,10 +13,12 @@ client = discord.Client()
 tasklist = asyncio.PriorityQueue()
 cmd_cnt = 0
 
+
 @client.event
 async def on_ready():
-    #print when bot starts up
+    # print when bot starts up
     print(f"{client.user} has connected to discord")
+
 
 @client.event
 async def on_message(message):
@@ -26,7 +28,7 @@ async def on_message(message):
 
     global tasklist
     global cmd_cnt
-    cmd_cnt+=1
+    cmd_cnt += 1
     if message.author == client.user:
         return
     # if message.content == "start":
@@ -69,13 +71,15 @@ async def on_message(message):
     elif message.content == "killbot!":
         print("Kill command")
         if str(message.author) == "Yourname#1111":
-            #maybe add a prompt to get username of botrunner
-            await message.channel.send("I am being destroyed by "+str(message.author)+". Adios...")
+            # maybe add a prompt to get username of botrunner
+            await message.channel.send(
+                "I am being destroyed by " + str(message.author) + ". Adios..."
+            )
             print("killing")
             exit(0)
     elif message.content[:4] == ",rr ":
         message.content = message.content[4:]
-        await tasklist.put((random.randint(1,30),helper(message)))
+        await tasklist.put((random.randint(1, 30), helper(message)))
         a = await tasklist.get()
         print(tasklist)
         await a[1]
@@ -84,7 +88,5 @@ async def on_message(message):
     else:
         print("message intercepted but not for me")
 
-    
-            
 
 client.run(token)
