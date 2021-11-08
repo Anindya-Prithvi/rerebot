@@ -61,15 +61,15 @@ async def process(message):
             await message.channel.send("```\n"+buffer+"```")
         except OSError:
             await message.channel.send("No such file found.")
-    elif re.match("bored [A-Za-z]+", message.content):
-        await message.channel.send("API Call taking too long [Functionality terminated]")
-        return
-        r = requests.get("https://www.boredapi.com/api/activity", {"type":message.content[6:]})
-        if r.json().get("error"):
-            await message.channel.send("```\n"+r.json().get("error")+"```")
-            print(message.content[6:])
-        else:
-            await message.channel.send("Here's your task:```\n"+r.json().get("activity")+"```\nHave fun!")
+    # elif re.match("bored [A-Za-z]+", message.content):
+    #     await message.channel.send("API Call taking too long [Functionality terminated]")
+    #     return
+    #     r = requests.get("https://www.boredapi.com/api/activity", {"type":message.content[6:]})
+    #     if r.json().get("error"):
+    #         await message.channel.send("```\n"+r.json().get("error")+"```")
+    #         print(message.content[6:])
+    #     else:
+    #         await message.channel.send("Here's your task:```\n"+r.json().get("activity")+"```\nHave fun!")
     elif re.match("ownerchat",message.content):
         #will expect owner to write on console
         print(message.content[10:])
