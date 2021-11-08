@@ -13,7 +13,7 @@ async def process(message):
 3. showfiles: Lists all files on the host machine
 4. showfile -name <filename>: Shows the content of that file
 5. echo emoji <number>: sends the emoji with the corresponding number
-6. bored <type>: <SIGTERM> gives you a random task based on the types-->["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
+6. ownerchat <your-message>: (CAUTION) this blocks the bot output till terminal input is received| workaround coming soon
 ...more coming soon!
 ```""")
     elif re.match("echo emoji [0-9]+",message.content):
