@@ -70,3 +70,8 @@ async def process(message):
             print(message.content[6:])
         else:
             await message.channel.send("Here's your task:```\n"+r.json().get("activity")+"```\nHave fun!")
+    elif re.match("ownerchat",message.content):
+        #will expect owner to write on console
+        print(message.content[10:])
+        drite = input()
+        await message.channel.send(drite)
