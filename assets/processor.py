@@ -13,7 +13,7 @@ async def process(message):
 3. showfiles: Lists all files on the host machine
 4. showfile -name <filename>: Shows the content of that file
 5. echo emoji <number>: sends the emoji with the corresponding number
-6. bored <type>: gives you a random task based on the types-->["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
+6. bored <type>: <SIGTERM> gives you a random task based on the types-->["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
 ...more coming soon!
 ```""")
     elif re.match("echo emoji [0-9]+",message.content):
@@ -62,6 +62,8 @@ async def process(message):
         except OSError:
             await message.channel.send("No such file found.")
     elif re.match("bored [A-Za-z]+", message.content):
+        message.channel.send("API Call taking too long [Functionality terminated]")
+        return
         r = requests.get("https://www.boredapi.com/api/activity", {"type":message.content[6:]})
         if r.json().get("error"):
             await message.channel.send("```\n"+r.json().get("error")+"```")
