@@ -1,0 +1,1 @@
+All the messages intercepted by ownerchat command shall appear here
