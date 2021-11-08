@@ -2,6 +2,7 @@ import os
 import discord
 import re
 import asyncio
+import random
 from dotenv import load_dotenv
 from assets.processor import process
 
@@ -9,7 +10,7 @@ from assets.processor import process
 load_dotenv()
 token = os.getenv("token")
 client = discord.Client()
-tasklist = asyncio.Queue()
+tasklist = asyncio.PriorityQueue()
 cmd_cnt = 0
 
 @client.event
@@ -20,7 +21,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     async def helper(smth):
-        await asyncio.sleep(1)
+        # await asyncio.sleep(3)
         await process(smth)
 
     global tasklist
@@ -74,10 +75,10 @@ async def on_message(message):
             exit(0)
     elif message.content[:4] == ",rr ":
         message.content = message.content[4:]
-        await tasklist.put(helper(message))
+        await tasklist.put((random.randint(1,30),helper(message)))
         a = await tasklist.get()
         print(tasklist)
-        await a
+        await a[1]
         tasklist.task_done()
 
     else:
