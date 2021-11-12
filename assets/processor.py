@@ -26,7 +26,9 @@ async def process(message):
 4. showfile -name <filename>: Shows the content of that file
 5. echo emoji <number>: sends the emoji with the corresponding number
 6. percent <obj1, obj2, obj3...>: Uniform random vector on a sphere representing the percent share of each obj
-7. ownerchat <your-message>: (CAUTION) this blocks the bot output till terminal input is received| workaround coming soon
+7. cat: cat pics
+8. waifu: waifu pics
+9. ownerchat <your-message>: (CAUTION) this blocks the bot output till terminal input is received| workaround coming soon
 ...more coming soon!
 ```"""
         )
@@ -89,6 +91,17 @@ async def process(message):
     #         print(message.content[6:])
     #     else:
     #         await message.channel.send("Here's your task:```\n"+r.json().get("activity")+"```\nHave fun!")
+    elif re.match("cat.*", message.content):
+        # await message.channel.send("API Call taking too long [Functionality terminated]")
+        #** ALL RIGHTS RESERVED: https://docs.thecatapi.com/api-reference/**
+        r = requests.get("https://api.thecatapi.com/v1/images/search")
+        await message.channel.send(r.json()[0].get("url"))
+
+    elif re.match("waifu.*", message.content):
+        #** ALL RIGHTS RESERVED: https://waifu.pics/docs **
+        r=requests.get("https://api.waifu.pics/sfw/waifu")
+        await message.channel.send(r.json().get("url"))
+
     elif re.match("percent [A-Za-z0-9]+", message.content):
         words = message.content[8:].split(",")
         words = [i.strip() for i in words]

@@ -26,11 +26,12 @@ async def queryhandler():
     global tasklist
     if tasklist.qsize() != 0:
         a = await tasklist.get()
-        print(a)
+        #print(a)
         retval = await a
         tasklist.task_done()
         if (retval == 0) or (retval == None):
-            print("Task done")
+            #print("Task done")
+            pass
         else:
             print("Very rare <report incident>!")
 
@@ -58,6 +59,7 @@ async def on_message(message):
         await process(smth)
 
     global tasklist
+    print(f"{str(message.author)[:-5]} said: {str(message.content)}")
     if message.author == client.user:
         return
     # if message.content == "start":
@@ -109,7 +111,7 @@ async def on_message(message):
 
     elif re.match(",rr ownerchat", message.content):
         # will expect owner to write on console
-        print(message.content[14:])
+        #print(message.content[14:])
         await message.channel.send(
             "Message has been sent, you will be mentioned on the reply :smile:"
         )
@@ -123,11 +125,12 @@ async def on_message(message):
         await tasklist.put(helper(message))
 
     else:
-        print("message intercepted but not for me")
+        #print("not for me->", message.content)
+        pass
 
 
 async def replyboss(message):
-    print("trying")
+    #print("trying")
     with open("messages/" + str(hash(message)), "r") as f:
         if (fst := f.read(1)) == chr(0):
             return message
