@@ -3,6 +3,16 @@ import requests
 import os
 
 
+from random import gauss
+
+
+def make_rand_vector(dims):
+    vec = [gauss(0, 1) for i in range(dims)]
+    mag = sum(x ** 2 for x in vec) ** 0.5
+    rvur = [x / mag for x in vec]
+    return [round(100 * i ** 2, 2) for i in rvur]
+
+
 async def process(message):
     if message.content == "":
         message.content = "help"
@@ -15,7 +25,8 @@ async def process(message):
 3. showfiles: Lists all files on the host machine
 4. showfile -name <filename>: Shows the content of that file
 5. echo emoji <number>: sends the emoji with the corresponding number
-6. ownerchat <your-message>: (CAUTION) this blocks the bot output till terminal input is received| workaround coming soon
+6. percent <obj1, obj2, obj3...>: Uniform random vector on a sphere representing the percent share of each obj
+7. ownerchat <your-message>: (CAUTION) this blocks the bot output till terminal input is received| workaround coming soon
 ...more coming soon!
 ```"""
         )
@@ -42,7 +53,9 @@ async def process(message):
         # addfile, name something, content something else
         try:
             thedir = "userdir/"
-            f = open(thedir + breakit[1][5:], "a")  # no overwriting stuff :)
+            f = open(
+                thedir + breakit[1][5:], "w"
+            )  # overwriting stuff :) i dont have infinite space
             f.write(breakit[2][8:])
             f.close()
             await message.channel.send("File written successfully!")
@@ -76,7 +89,16 @@ async def process(message):
     #         print(message.content[6:])
     #     else:
     #         await message.channel.send("Here's your task:```\n"+r.json().get("activity")+"```\nHave fun!")
+    elif re.match("percent [A-Za-z0-9]+", message.content):
+        words = message.content[8:].split(",")
+        words = [i.strip() for i in words]
+        reply = "**" + str(message.author)[:-5] + "**, you are "
+        rvec = make_rand_vector(max(len(words), 2))
+        for i in range(len(words)):
+            reply = reply + f"{rvec[i]}% " + words[i] + ", "
+        reply = reply[:-2] + "."
+        await message.channel.send(reply)
+
     else:
         message.content = "help"
         await process(message)
-
