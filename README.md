@@ -4,7 +4,7 @@
 
 **\<NEW>** Rerebot, tell me you have nitro without telling me you have nitro. I'll go first, Rerebot allows YOU to send actual messages to a channel as a BOT. It is also has file i/o and repeater capabilities
   
-Rerebot ~~is currently~~was a file-i/o bot for discord made in discord.py. Now, it is much more. Current motive is inter-server communication using file-writes... Yes, that's outrageous lol. The idea sprouted out from no where and hence the project may contain a few cool features which maybe totally unrelated from the others. You may invite the ocassionally active bot using this [link](https://discord.com/api/oauth2/authorize?client_id=906607423916245063&permissions=429497003072&scope=bot). Operate the bot by prefixing `,rr ` to your messages.
+Rerebot ~~is currently~~was a file-i/o bot for discord made in discord.py. Now, it is much more. Current motive is inter-server communication using file-writes... Yes, that's outrageous lol. The idea sprouted out from no where and hence the project may contain a few cool features which maybe totally unrelated from the others. You may invite the ocassionally active bot using this [link](https://discord.com/api/oauth2/authorize?client_id=906607423916245063&permissions=377957387328&scope=bot). Operate the bot by prefixing `,rr ` to your messages.
 
 ## How to run (With conda):
 1. Clone this repository
